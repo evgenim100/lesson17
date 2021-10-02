@@ -2,15 +2,8 @@ window.addEventListener('DOMContentLoaded', function(){
 'use strict';
 const timerHours = document.querySelector('#timer-hours'),
       timerMinutes = document.querySelector('#timer-minutes'),
-      timerSeconds = document.querySelector('#timer-seconds');
-
-// function countTimer(deadline){
-  
-//          if (timer.timeRemaining > 0){
-//           setInterval(updateClock, 1000);
-//         };
-// };
-
+      timerSeconds = document.querySelector('#timer-seconds'),
+      deadline = '01 july 2022';
 
 function addZero(number){
   number = String(number);
@@ -34,20 +27,18 @@ function getTimeRemaining(deadline){
       let   seconds = '00',
             minutes = '00',
             hours = '00';
-            
+            clearInterval(startTimer);
       return {hours, minutes, seconds, timeRemaining};
       }
 };
 
-function updateClock(deadline){
+function updateClock(){
   let timer = getTimeRemaining(deadline);
   timerHours.textContent = addZero(timer.hours);
   timerMinutes.textContent = addZero(timer.minutes);
   timerSeconds.textContent = addZero(timer.seconds);
-  console.log(getTimeRemaining(deadline));
 };
 
-setInterval(updateClock('01 july 2022'), 1000);
-// countTimer('01 july 2022');
+let startTimer = setInterval(updateClock, 1000);
 
 });
