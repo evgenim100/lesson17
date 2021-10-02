@@ -1,10 +1,15 @@
 window.addEventListener('DOMContentLoaded', function(){
 'use strict';
+const timerHours = document.querySelector('#timer-hours'),
+      timerMinutes = document.querySelector('#timer-minutes'),
+      timerSeconds = document.querySelector('#timer-seconds');
 
-function countTimer(deadline){
-  const timerHours = document.querySelector('#timer-hours'),
-        timerMinutes = document.querySelector('#timer-minutes'),
-        timerSeconds = document.querySelector('#timer-seconds');
+// function countTimer(deadline){
+  
+//          if (timer.timeRemaining > 0){
+//           setInterval(updateClock, 1000);
+//         };
+// };
 
 
 function addZero(number){
@@ -16,7 +21,7 @@ return number;
 };
 
 
-function getTimeRemaining(){
+function getTimeRemaining(deadline){
   let dateStop = new Date(deadline).getTime(),
       dateNow = new Date().getTime(),
       timeRemaining = (dateStop - dateNow) / 1000;
@@ -32,22 +37,17 @@ function getTimeRemaining(){
             
       return {hours, minutes, seconds, timeRemaining};
       }
-}
+};
 
-function updateClock(){
-  let timer = getTimeRemaining();
+function updateClock(deadline){
+  let timer = getTimeRemaining(deadline);
   timerHours.textContent = addZero(timer.hours);
   timerMinutes.textContent = addZero(timer.minutes);
   timerSeconds.textContent = addZero(timer.seconds);
-  if (timer.timeRemaining > 0){
-    setInterval(updateClock, 1000);
-    
-  }
-  
-}
-updateClock();
-}
+  console.log(getTimeRemaining(deadline));
+};
 
-countTimer('01 july 2022');
+setInterval(updateClock('01 july 2022'), 1000);
+// countTimer('01 july 2022');
 
-}); 
+});
